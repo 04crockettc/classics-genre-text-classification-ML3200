@@ -28,5 +28,11 @@ X_train_tfidf = vectorizer.fit_transform(X_train['Description'].fillna(''))
 X_test_tfidf = vectorizer.fit_transform(X_test['Description'].fillna(''))
 vectorizer.get_feature_names_out()
 
-print(X_train_tfidf.shape)
-print(X_test_tfidf.shape)
+#print(X_train_tfidf.shape)
+#print(X_test_tfidf.shape)
+
+
+#finish preprocessing
+#fit the model on training data
+#test the model
+#evaluate the results
