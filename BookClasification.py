@@ -1,10 +1,11 @@
-import numpy as py
+import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.svm import LinearSVC
+import matplotlib.pyplot as plt
 
 #Load the goodreads dataset
 data = pd.read_csv("goodreads_data.csv")
@@ -66,3 +67,24 @@ print(classification_report(logistic_y_test, logistic_y_pred))
 
 print("Test Accuracy for LinearSVC:", accuracy_score(y_test, y_pred), "\n")
 print(classification_report(y_test, y_pred))
+
+# Visualize results using matplotlib
+#accuracy comparisons between models
+models = ["Logistic Regression","LinearSVC"]
+accuracies = [accuracy_score(y_test, logistic_y_pred), accuracy_score(y_test, y_pred)]
+
+plt.figure(figsize=(6,4))
+plt.bar(models, accuracies, color=['green','orange'])
+plt.ylim(0.6,1)
+plt.title("Model Accuracy Comparison")
+plt.ylabel("Accuracy")
+plt.show()
+
+#Class ditribution 
+classes, counts = np.unique(y, return_counts=True)
+plt.figure(figsize=(6,4))
+plt.bar(["Non-Classic","Classic"], counts, color=['skyblue','green'])
+plt.title("Distribution of Classic vs Non-Classic Books")
+plt.ylabel("Number of Books")
+plt.show()
+
